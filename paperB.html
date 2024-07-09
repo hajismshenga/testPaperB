@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Display</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Viewer</h1>
+    <form id="imageForm">
+        <label for="imageCount">Number of images:</label>
+        <input type="text" id="imageCount" name="imageCount" value="4">
+        <button type="button" onclick="displayTable()">Display Images</button>
+    </form>
+    <p id="message"></p>
+    <table id="imageTable"></table>
+
+    <script>
+        function displayTable() {
+            const imageCountInput = document.getElementById('imageCount').value;
+            const imageCount = parseInt(imageCountInput);
+            const message = document.getElementById('message');
+            const imageTable = document.getElementById('imageTable');
+            
+            message.textContent = '';
+            imageTable.innerHTML = '';
+            
+            if (isNaN(imageCount) || imageCount % 2 !== 0) {
+                message.textContent = 'Invalid value';
+                return;
+            }
+            
+            const images = ['amina.png', 'mnma.png', 'suza.png', 'zu.png'];
+            let tableHTML = '';
+
+            for (let i = 0; i < imageCount; i += 2) {
+                tableHTML += '<tr>';
+                tableHTML += '<td><img src="' + images[i] + '" alt="Image ' + (i+1) + '"></td>';
+                tableHTML += '<td><img src="' + images[i+1] + '" alt="Image ' + (i+2) + '"></td>';
+                tableHTML += '</tr>';
+            }
+
+            imageTable.innerHTML = tableHTML;
+        }
+    </script>
+</body>
+</html>
